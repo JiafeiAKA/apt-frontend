@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import OylmpicMainPage from '@/components/OylmpicMainPage.vue';
+import OlympicMainPage from '@/components/OlympicMainPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: OylmpicMainPage,
+    component: OlympicMainPage,
   },
   {
     path: '/about',
@@ -16,6 +16,12 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+  },
+  {
+    path: '/country-detail/:id', // Dynamic route for country details
+    name: 'country-detail',
+    component: () =>
+      import(/* webpackChunkName: "country-detail" */ '../views/CountryDetail.vue'), // Lazy load the detail page
   },
 ];
 
