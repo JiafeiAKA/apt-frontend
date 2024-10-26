@@ -4,8 +4,10 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #F4F6F9;
+    color: #001231;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Cinzel', serif;
+    color: #001231;
 }

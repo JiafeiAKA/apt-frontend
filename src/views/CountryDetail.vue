@@ -3,8 +3,8 @@
     <div class="flex flex-col items-center md:flex-row m-5">
       <!-- <country-flag :country="countryCode" size="big" class="mr-4" /> -->
       <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div>
-      <div class="md:text-left mt-5">
-        <h1 class="text-3xl font-bold mb-5">{{ countryDetails?.name || 'Country Name' }}</h1>
+      <div class="md:text-left mt-5 md:mt-0">
+        <h1 class="text-3xl font-bold mb-5 ">{{ countryDetails?.name || 'COUNTRY NAME' }}</h1>
           <p>Capital City: {{ countryDetails?.capital || 'N/A' }}</p>
           <p>Currency: {{ countryDetails?.currency || 'N/A' }}</p>
           <p>Continent: {{ countryDetails?.continent || 'N/A' }}</p>
