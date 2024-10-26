@@ -15,3 +15,12 @@ export interface CountrySportDetail {
   Bronze: number;
   Silver: number;
 }
+
+export interface CountryDetail{
+  Name: string;
+  Capital: string;
+  Currency: string;
+  Continent: string;
+  Population: number;
+  OfficialLanguage: string;
+}

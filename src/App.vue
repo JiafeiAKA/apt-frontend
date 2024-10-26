@@ -31,13 +31,15 @@ function toggleMenu() {
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'home' }">Home</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'login' }">Log in</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'register' }">Register</RouterLink> 
+          <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'manage user' }">Manage User</RouterLink> 
         </div>
       </nav>
 
       <div v-if="isMenuOpen" class="flex flex-col md:hidden bg-[#D3B965] p-4 space-y-4">
         <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'home' }">Home</RouterLink> 
         <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'login' }">Log in</RouterLink> 
-        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'register' }">Register</RouterLink> 
+        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'register' }">Register</RouterLink>
+        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'manage user' }">Manage User</RouterLink>  
       </div>
     </header>
 
