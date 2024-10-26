@@ -44,15 +44,13 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'countrydetail/:id',
         name: 'country-detail',
-        component: () =>
-          import(/* webpackChunkName: "about" */ '../views/CountryDetail.vue'),
+        component: CountryDetail,
         props: true
       },
       {
         path: 'sportdetail/:id',
         name: 'sport-detail',
-        component: () =>
-          import(/* webpackChunkName: "about" */ '../views/SportDetail.vue'),
+        component: SportDetail,
         props: true
       }
     ]

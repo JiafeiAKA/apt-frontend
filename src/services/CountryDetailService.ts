@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-// Define the base URL for the API. You can replace this with the actual API endpoint.
-const API_BASE_URL = 'http://localhost:8080/api'; // Replace this with your backend URL
+const API_BASE_URL = 'http://localhost:8080/api';
 
 class CountryDetailService {
   /**
