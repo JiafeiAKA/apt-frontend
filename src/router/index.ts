@@ -6,6 +6,8 @@ import RegisterPage from '@/views/RegisterPage.vue';
 import LayoutView from '@/views/LayoutView.vue';
 import SportDetail from '../views/SportDetail.vue';
 import CountryDetail from '@/views/CountryDetail.vue';
+import ProfileView from '@/views/ProfileView.vue';
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     component: LoginPage,
     meta: { hideNavbar: true },
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileView,
   },
   {
     path: '/register',

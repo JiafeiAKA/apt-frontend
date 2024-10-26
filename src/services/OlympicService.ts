@@ -1,23 +1,10 @@
 import { OlympicDetail } from '@/types';
 import axios, { AxiosResponse } from 'axios';
-
-const OLYMPIC_API_BASE_URL = 'http://localhost:8080/api';
-
-const apiClient = axios.create({
-  baseURL: OLYMPIC_API_BASE_URL,
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-});
+import { apiClient } from './ApiService';
 
 export default {
   getOlympic(year: number): Promise<AxiosResponse<OlympicDetail[]>> {
-    return apiClient.get<OlympicDetail[]>('/athletes/' + year);
-  },
-  getCountryDetail(id: string): Promise<AxiosResponse<OlympicDetail>> {
-    return apiClient.get<OlympicDetail>('/country/' + id); // Adjust the API endpoint as needed
+    return apiClient.get<OlympicDetail[]>('/althletes' + '/' + year);
   },
   getOlympicWithPagination(
     year: number,
