@@ -56,16 +56,16 @@
       </div>
 
       <!-- Comments Section -->
-      <div class="w-full md:w-1/2 md:ml-10">
-        <h3 class="text-2xl font-semibold mb-4">COMMENTS</h3>
-        <ul>
-          <li v-for="(comment, index) in comments" :key="index" class="flex items-start gap-2 mb-4">
-            <div class="w-8 h-8 bg-blue-800 rounded-full flex-shrink-0"></div>
-            <div>
-              <p class="font-medium">{{ comment.username }}</p>
-              <p class="bg-yellow-100 p-2 rounded">{{ comment.text }}</p>
-            </div>
-          </li>
+  <div class="w-full md:w-1/2 md:ml-10">
+    <h3 class="text-2xl font-semibold mb-4">COMMENTS</h3>
+      <ul>
+        <li v-for="(comment, index) in comments" :key="index" class="flex items-start gap-2 mb-4">
+          <div class="w-8 h-8 bg-blue-800 rounded-full flex-shrink-0"></div>
+          <div>
+            <p class="font-medium">{{ comment.username }}</p>
+            <p class="bg-yellow-100 p-2 rounded">{{ comment.text }}</p>
+          </div>
+        </li>
         </ul>
       </div>
     </div>

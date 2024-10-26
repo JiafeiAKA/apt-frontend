@@ -1,15 +1,15 @@
 <template>
-  <div class="flex min-h-screen bg-gradient-to-r ]">
+  <div class="flex min-h-screen bg-gradient-to-r">
     <!-- Left side -->
     <div class="hidden md:flex items-center justify-center w-[40%] bg-gradient-to-b from-[#d3b965] to-[#fbf4df]"></div>
 
     <!-- Right side -->
     <div class="flex items-center w-full p-6 bg-white md:w-[60%]">
       <div class="w-full max-w-md md:ml-20">
-        <h2 class="text-3xl font-bold mb-2 text-[#26294D] leading-tight">LOG IN<br>YOUR<br>ACCOUNT</h2>        
+        <h2 class="text-3xl font-bold mb-4 text-[#26294D] leading-tight">LOG IN<br>YOUR<br>ACCOUNT</h2>        
         <form @submit.prevent="handleLogin">
           <div class="mb-4">
-            <label for="username" class="block text-sm font-semibold text-[#26294D]">Username</label>
+            <label for="username" class="block font-medium">Username</label>
             <input
               type="text"
               id="username"
@@ -20,7 +20,7 @@
           </div>
   
           <div class="mb-6">
-            <label for="password" class="block text-sm font-semibold text-[#1a202c]">Password</label>
+            <label for="password" class="block font-medium">Password</label>
             <input
               type="password"
               id="password"
@@ -67,7 +67,7 @@ const handleLogin = async () => {
         const response = await LoginService.login(username.value, password.value);
         if (response.data.token) {
             saveToken(response.data.token); // Save token in localStorage
-            router.push('/profile'); // Redirect after login
+            router.push('/'); // Redirect after login
         } else {
             errorMessage.value = 'Invalid credentials. Please try again.';
         }
