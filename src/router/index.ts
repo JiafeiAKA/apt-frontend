@@ -3,6 +3,9 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import OlympicMainPage from '@/components/OlympicMainPage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
+import LayoutView from '@/views/LayoutView.vue';
+import SportDetail from '../views/SportDetail.vue';
+import CountryDetail from '@/views/CountryDetail.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,10 +36,26 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
   {
-    path: '/country-detail/:id', // Dynamic route for country details
-    name: 'country-detail',
-    component: () =>
-      import(/* webpackChunkName: "country-detail" */ '../views/CountryDetail.vue'), // Lazy load the detail page
+    path: '/event/:id',
+    name: 'event-layout-view',
+    component: LayoutView,
+    props: true,
+    children: [
+      {
+        path: 'countrydetail/:id',
+        name: 'country-detail',
+        component: () =>
+          import(/* webpackChunkName: "about" */ '../views/CountryDetail.vue'),
+        props: true
+      },
+      {
+        path: 'sportdetail/:id',
+        name: 'sport-detail',
+        component: () =>
+          import(/* webpackChunkName: "about" */ '../views/SportDetail.vue'),
+        props: true
+      }
+    ]
   },
 ];
 
