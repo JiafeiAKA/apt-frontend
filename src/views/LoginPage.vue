@@ -67,7 +67,7 @@ const handleLogin = async () => {
         const response = await LoginService.login(username.value, password.value);
         if (response.data.token) {
             saveToken(response.data.token); // Save token in localStorage
-            router.push('/profile'); // Redirect after login
+            router.push('/'); // Redirect after login
         } else {
             errorMessage.value = 'Invalid credentials. Please try again.';
         }

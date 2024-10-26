@@ -6,8 +6,10 @@ import RegisterPage from '@/views/RegisterPage.vue';
 import LayoutView from '@/views/LayoutView.vue';
 import SportDetail from '../views/SportDetail.vue';
 import CountryDetail from '@/views/CountryDetail.vue';
+import ManageUser from '@/views/ManageUserView.vue';
+import NotFoundView from "@/views/NotFoundView.vue";
+import NetworkErrorView from "@/views/NetworkErrorView.vue";
 import ProfileView from '@/views/ProfileView.vue';
-
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [
     component: RegisterPage,
     meta: { hideNavbar: true },
 
+  },
+  {
+    path: '/manage_user',
+    name: 'manage user',
+    component: ManageUser,
   },
   {
     path: '/about',
@@ -62,6 +69,22 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
+  {
+    path: '/404/:resource',
+    name: '404-resource',
+    component: NotFoundView,
+    props: true
+},
+{
+    path: '/network-error',
+    name: 'network-error',
+    component: NetworkErrorView
+},
+{
+    path: '/:catchAll(.*)',
+    name: 'notfound',
+    component: NotFoundView
+}
 ];
 
 const router = createRouter({
