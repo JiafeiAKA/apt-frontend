@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import OlympicMainPage from '@/components/OlympicMainPage.vue';
+import LoginPage from '@/views/LoginPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
     component: OlympicMainPage,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPage,
   },
   {
     path: '/about',

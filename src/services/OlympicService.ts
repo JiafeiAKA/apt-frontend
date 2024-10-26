@@ -14,7 +14,10 @@ const apiClient = axios.create({
 
 export default {
   getOlympic(year: number): Promise<AxiosResponse<OlympicDetail[]>> {
-    return apiClient.get<OlympicDetail[]>('/althletes' + '/' + year);
+    return apiClient.get<OlympicDetail[]>('/athletes/' + year);
+  },
+  getCountryDetail(id: string): Promise<AxiosResponse<OlympicDetail>> {
+    return apiClient.get<OlympicDetail>('/country/' + id); // Adjust the API endpoint as needed
   },
   getOlympicWithPagination(
     year: number,
