@@ -5,6 +5,7 @@
 <template>
   <nav>
     <router-link to="/login">Log In</router-link> |
+    <router-link to="register">Register</router-link> |
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
