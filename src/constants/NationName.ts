@@ -464,7 +464,7 @@ export const NOC_NAMES = new Map([
   ['ZIM', 'Zimbabwe'],
 ]);
 
-export const countryCodes: Map<string, string> = new Map([
+export const NAME_TO_NOC: Map<string, string> = new Map([
   ['Aruba', 'ABW'],
   ['Afghanistan', 'AFG'],
   ['Angola', 'AGO'],

@@ -1,13 +1,26 @@
-// LoginService.ts
-import axios, { AxiosResponse } from 'axios';
+// // LoginService.ts
+// import axios, { AxiosResponse } from 'axios';
+// import { LoginResponse, tokenKey } from './AuthenticationService';
+// import { apiClient } from './ApiService';
+// import { ref } from 'vue';
 
-const API_BASE_URL = 'http://localhost:8080/api'; // Update to your actual login endpoint
 
-export default {
-  login(username: string, password: string): Promise<AxiosResponse<any>> {
-    return axios.post(`${API_BASE_URL}/login`, {
-      username,
-      password,
-    });
-  },
-};
+// export const loginRespone = ref<LoginResponse>();
+
+// export default {
+//   login(username: string, password: string): Promise<LoginResponse> {
+//     return apiClient.post(`/login`, {
+//       username,
+//       password,
+//     });
+//   },
+// };
+
+
+// export const saveToken = (token: string): void => {
+//   localStorage.setItem(tokenKey, token);
+// };
+
+// export const clearToken = (): void => {
+//   localStorage.removeItem(tokenKey);
+// };

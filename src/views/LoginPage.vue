@@ -48,25 +48,25 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import LoginService from '@/services/LoginService';
+
 import { useRouter } from 'vue-router';
+import { login, saveToken, userIdKey, usernameKey } from '@/services/AuthenticationService';
 
 const router = useRouter();
 const username = ref('');
 const password = ref('');
 const errorMessage = ref('');
 
-// Function to save the token
-const saveToken = (token: string) => {
-  localStorage.setItem('authToken', token);
-};
 
 // Updated handleLogin method
 const handleLogin = async () => {
     try {
-        const response = await LoginService.login(username.value, password.value);
-        if (response.data.token) {
-            saveToken(response.data.token); // Save token in localStorage
+        const response = await login(username.value, password.value);
+        if (response.token) {
+            saveToken(response.token); // Save token in localStorage
+            localStorage.setItem(usernameKey, response.username);
+            localStorage.setItem(userIdKey, response?.userId.toString());
+
             router.push('/'); // Redirect after login
         } else {
             errorMessage.value = 'Invalid credentials. Please try again.';

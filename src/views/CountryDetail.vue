@@ -37,13 +37,13 @@ const props = defineProps<{ countryId: string }>();
 const countryDetails = ref<any>(null);
 const countryCode = ref<string | null>(null);
 
-onMounted(async () => {
-  try {
-    const response = await CountryDetailService.getCountryDetail(props.countryId);
-    countryDetails.value = response.data;
-    countryCode.value = countryDetails.value?.noc || 'USA';
-  } catch (error) {
-    console.error('Error fetching country details:', error);
-  }
-});
+// onMounted(async () => {
+//   try {
+//     const response = await CountryDetailService.getCountryDetail(props.countryId);
+//     countryDetails.value = response.data;
+//     countryCode.value = countryDetails.value?.noc || 'USA';
+//   } catch (error) {
+//     console.error('Error fetching country details:', error);
+//   }
+// });
 </script>

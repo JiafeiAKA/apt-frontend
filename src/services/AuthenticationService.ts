@@ -1,15 +1,26 @@
 import axios from 'axios';
 import { apiClient, Role } from './ApiService';
+import { ref } from 'vue';
 
-interface LoginResponse {
+export interface LoginResponse {
   token: string;
+  username: string;
+  userId: number;
 }
+
+export const tokenKey = 'authToken';
+export const usernameKey = 'username';
+export const userIdKey = 'userId';
+
+export const loginRespone = ref<LoginResponse>();
 
 export const login = async (
   username: string,
   password: string
 ): Promise<LoginResponse> => {
   const response = await apiClient.post('/login', { username, password });
+  // loginRespone.value = response.data;
+
   return response.data;
 };
 
@@ -40,9 +51,9 @@ export const signup = async (
 };
 
 export const saveToken = (token: string): void => {
-  localStorage.setItem('authToken', token);
+  localStorage.setItem(tokenKey, token);
 };
 
 export const clearToken = (): void => {
-  localStorage.removeItem('authToken');
+  localStorage.removeItem(tokenKey);
 };

@@ -21,11 +21,11 @@
 <script setup lang="ts">
 import { OlympicDetail } from '@/types';
 import { defineProps } from 'vue';
-import { NOC_NAMES, countryCodes } from '@/constants/NationName';
+import { NOC_NAMES, NAME_TO_NOC } from '@/constants/NationName';
 import { prop } from 'vue-class-component';
 
 const nocNames = NOC_NAMES;
-const codeCountry = countryCodes;
+const codeCountry = NAME_TO_NOC;
 
 const props = defineProps<{
     olympicsdetail: OlympicDetail
