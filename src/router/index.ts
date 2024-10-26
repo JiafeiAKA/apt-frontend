@@ -14,11 +14,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: LoginPage,
+    meta: { hideNavbar: true },
   },
   {
     path: '/register',
     name: 'register',
     component: RegisterPage,
+    meta: { hideNavbar: true },
+
   },
   {
     path: '/about',

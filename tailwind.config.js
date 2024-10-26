@@ -4,6 +4,10 @@ module.exports = {
   content: [],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Montserrat', 'sans-serif'],
+      cinzel: ['Cinzel', 'serif'],
+    },
   },
   plugins: [],
 }
