@@ -56,18 +56,23 @@ const username = ref('');
 const password = ref('');
 const errorMessage = ref('');
 
-async function handleLogin() {
-  try {
-    const response = await LoginService.login(username.value, password.value);
-    if (response.data.success) {
-      // Redirect to home page or desired route after successful login
-      router.push('/');
-    } else {
-      errorMessage.value = response.data.message || 'Invalid credentials';
+// Function to save the token
+const saveToken = (token: string) => {
+  localStorage.setItem('authToken', token);
+};
+
+// Updated handleLogin method
+const handleLogin = async () => {
+    try {
+        const response = await LoginService.login(username.value, password.value);
+        if (response.data.token) {
+            saveToken(response.data.token); // Save token in localStorage
+            router.push('/profile'); // Redirect after login
+        } else {
+            errorMessage.value = 'Invalid credentials. Please try again.';
+        }
+    } catch (error) {
+        errorMessage.value = 'Login failed. Please check your credentials.';
     }
-  } catch (error) {
-    console.error('Login error:', error);
-    errorMessage.value = 'Login failed. Please try again.';
-  }
-}
+};
 </script>
