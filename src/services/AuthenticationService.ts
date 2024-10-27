@@ -11,16 +11,16 @@ export interface LoginResponse {
 export const tokenKey = 'authToken';
 export const usernameKey = 'username';
 export const userIdKey = 'userId';
+// export const userResKey = "userRes";
 
-export const loginRespone = ref<LoginResponse>();
+
 
 export const login = async (
   username: string,
   password: string
 ): Promise<LoginResponse> => {
-  const response = await apiClient.post('/login', { username, password });
-  // loginRespone.value = response.data;
 
+  const response = await apiClient.post('/login', { username, password });
   return response.data;
 };
 

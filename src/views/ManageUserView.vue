@@ -13,13 +13,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(user, index) in users" :key="user.id">
+          <tr v-for="(user, index) in users" :key="user.userId">
             <td>{{ index + 1 }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.role }}</td>
             <td>
-              <button @click="toggleRole(user)" class="modify-btn">
-                {{ user.role === 'Admin' ? 'Downgrade to User' : 'Upgrade to Admin' }}
+              <button @click="toggleRole(user)"  
+              :disabled="user.username === 'admin' || isToggled"
+              :class="buttonClass"
+              class="modify-btn" >
+                {{ user.role === Role.ADMIN.toString() ? 'Downgrade to User' : 'Upgrade to Admin' }}
+              </button>
+            </td>
+            <td>
+              <button @click="deleteU(user.userId)"  
+              :disabled="user.username === 'admin' || isToggled"
+              :class="buttonClass"
+              class="modify-btn" >
+                {{ user.username === 'admin' ? 'Can not Delete' : 'Delete' }}
               </button>
             </td>
           </tr>
@@ -28,51 +39,112 @@
     </div>
   </template>
   
-  <script setup>
-  import { ref, onMounted } from 'vue'
+  <script setup lang="ts">
+  import { ref, onMounted ,defineProps, computed} from 'vue'
   import axios from 'axios'
+import { deleteUser, getAllUser, updateUserRole } from '@/services/UserService';
+import { UserRes } from '@/services/UserService';
+import { OlympicYear } from '@/services/MedalCountryService';
+import { Role } from '@/services/ApiService';
+import { LoginResponse, userIdKey, usernameKey } from '@/services/AuthenticationService';
+import { RefSymbol } from '@vue/reactivity';
+
   
   // Sample data for testing
-  const users = ref([
-    { id: 1, username: 'Username1', role: 'RegisteredUser' },
-    { id: 2, username: 'Username2', role: 'RegisteredUser' },
-    { id: 3, username: 'Admin1', role: 'Admin' }
-  ])
+  const users = ref<UserRes[]>([]);
+  const userLiginRole = ref(Role.REGISTERED);
+  const isToggled = ref(true);
+
+const props = defineProps<{
+  user: UserRes;
+}>();
+
   
+
+
+
+
   const fetchUsers = async () => {
+
+    const userIdLogin = localStorage.getItem(userIdKey);
+
+  
     try {
-      const response = await axios.get('/api/users')
-      console.log(response.data) // Check if data is being fetched correctly
-      users.value = response.data
+      const response = await getAllUser();
+    
+      users.value = response;
+
+  
+      const matchedUsers  = response.filter(user => user.userId.toString() === userIdLogin);
+
+      if(matchedUsers.length > 0){
+        userLiginRole.value = matchedUsers[0].role;
+
+        
+
+        if(userLiginRole.value === Role.ADMIN){
+          isToggled.value = false;
+        }
+
+
+      }
+    
+      
     } catch (error) {
       console.error('Error fetching users:', error)
     }
   }
+
+  onMounted(() => {
+    fetchUsers();
+});
   
-  const toggleRole = async (user) => {
-  const newRole = user.role === 'Admin' ? 'RegisteredUser' : 'Admin'
+const deleteU = async (id: number)=>{
+    
+    try {
+        await deleteUser(id);        
+        fetchUsers();
+        
+      } catch (error) {
+        console.error('Error delete users:', error)
+      }
+  
+  
+   }
+
+   
+
+  const toggleRole = async (user : UserRes) => {
+  const newRole = user.role === Role.ADMIN ?  Role.REGISTERED : Role.ADMIN;
+  
+
+
+
+  const newUser : UserRes = {
+    userId: user.userId,
+    username: user.username,
+    passwordHash: user.passwordHash,
+    email: user.email,
+    role: newRole,
+    createdAt: user.createdAt
+  }
+  console.log(newUser)
   
   try {
-    const response = await axios.put(`/api/users/${user.id}`, { role: newRole })
+    const response = await updateUserRole(user.userId,newUser);
+    fetchUsers();
     
-    if (response.status === 200) {
-      console.log(`Successfully updated role for ${user.username}`)
-      user.role = newRole
-    } else {
-      console.error('Failed to update role. Server responded with:', response)
-      alert('Failed to update role. Please check the server logs for more details.')
-    }
+ 
   } catch (error) {
-    console.error('Error updating role:', error)
-    if (error.response && error.response.status === 403) {
-      alert('Permission denied: You are not authorized to modify roles.')
-    } else if (error.response && error.response.status === 400) {
-      alert('Bad request: Please check if the role is correctly set.')
-    } else {
-      alert('Failed to update the user role. Please try again.')
-    }
+     console.log(error);
   }
 }
+
+const buttonClass = computed(() => {
+  return isToggled.value ? 'button-disabled' : 'button-active';
+});
+
+
 
   
   // Uncomment to fetch real data on mount
@@ -117,8 +189,8 @@
   }
   
   .modify-btn {
-    background-color: #3498db;
-    color: white;
+    /* background-color: #3498db; */
+    /* color: white; */
     padding: 5px 10px;
     border: none;
     border-radius: 4px;
@@ -129,5 +201,18 @@
   .modify-btn:hover {
     background-color: #2980b9;
   }
+
+  .button-disabled {
+  background-color: gray; /* สีเมื่อปุ่มถูกปิดการใช้งาน */
+  color: lightgray; /* เปลี่ยนสีข้อความเมื่อปิด */
+  cursor: not-allowed; /* เปลี่ยนรูปแบบ cursor เป็น not-allowed */
+}
+
+
+.button-active {
+  background-color: green; /* สีเมื่อปุ่มสามารถกดได้ */
+  color: white;
+}
+
   </style>
   

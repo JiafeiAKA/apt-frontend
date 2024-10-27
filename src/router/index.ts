@@ -38,7 +38,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/manage_user',
     name: 'manage user',
-    component: ManageUser,
+    component: ManageUser
+
   },
   {
     path: '/about',

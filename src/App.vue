@@ -1,12 +1,4 @@
-<script setup lang="ts">
-import { ref } from 'vue';
 
-const isMenuOpen = ref(false);
-
-function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value;
-}
-</script>
 
 <template>
   <div id="layout" class="font-regular"> 
@@ -29,10 +21,13 @@ function toggleMenu() {
         <!-- Links (Hidden on small screens, Left-Aligned on larger screens) -->
         <div class="hidden md:flex space-x-10">
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'home' }">Home</RouterLink> 
+          
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'login' }">Log in</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'register' }">Register</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'manage user' }">Manage User</RouterLink> 
         </div>
+
+        <H1>User name {{ receivedData  }}</H1>
       </nav>
 
       <div v-if="isMenuOpen" class="flex flex-col md:hidden bg-[#D3B965] p-4 space-y-4">
@@ -47,3 +42,27 @@ function toggleMenu() {
     <RouterView />
   </div>
 </template>
+
+
+<script setup lang="ts">
+import { provide, ref } from 'vue';
+
+
+const isMenuOpen = ref(false);
+
+// สร้างตัวแปรเพื่อเก็บข้อมูลที่รับมาจาก child
+const receivedData = ref<string | null>(null);
+
+// สร้างฟังก์ชันสำหรับรับข้อมูลจาก child
+const updateData = (data: string) => {
+  receivedData.value = data;
+};
+
+// ใช้ provide เพื่อแชร์ข้อมูลและฟังก์ชันไปยัง child component
+provide('updateData', updateData);
+
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+}
+</script>

@@ -37,6 +37,8 @@ const props = defineProps<{ countryId: string }>();
 const countryDetails = ref<any>(null);
 const countryCode = ref<string | null>(null);
 
+
+
 // onMounted(async () => {
 //   try {
 //     const response = await CountryDetailService.getCountryDetail(props.countryId);

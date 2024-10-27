@@ -3,7 +3,12 @@
     <!-- Header Section with Flag and Country Name -->
     <div class="flex flex-col items-center md:flex-row m-5">
       <!-- <img src="path-to-flag-image" alt="Country Flag" class="w-32 h-auto mr-6" /> -->
-      <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div>
+      <!-- <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div> -->
+       <div class=" w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">
+        <country-flag  :country="nocToname.get(nameToNOC.get(props.id) || 'USA')" size='big' class="border"/>
+   
+       </div>
+       
       <div class="md:text-left mt-5 md:mt-0">
         <h1 class="text-3xl font-bold mb-5">COUNTRY NAME</h1>
         <p>Total Medal: {{ totalMedal }}</p>
