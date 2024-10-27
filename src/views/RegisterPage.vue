@@ -37,11 +37,9 @@
                 </div>
                 <div class="mb-6">
                     <label for="role" class="text-baseline font-medium">Role:</label>
-                    <select v-model="role" class="w-32 h-9 ml-4 rounded border ">
-                        <option value="REGISTERED">Registered</option>
-                        <option value="ADMIN">Admin</option>
-                    </select>
+                    <span class="ml-4 text-base font-medium">Registered</span>
                 </div>
+
                 <button 
                     type="submit"
                     class="w-full bg-[#d3b965] text-white py-2 rounded hover:bg-[#bda553] focus:outline-none"
