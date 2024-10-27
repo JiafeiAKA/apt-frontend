@@ -5,12 +5,12 @@
       <!-- <img src="path-to-flag-image" alt="Country Flag" class="w-32 h-auto mr-6" /> -->
       <!-- <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div> -->
        <div class=" w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">
-        <country-flag  :country="nocToname.get(nameToNOC.get(props.id) || 'USA')" size='big' class="border"/>
-   
+        <country-flag :country="codeCountry.get(nocNames.get(props.id) || 'USA')" size='big' class="border" />
+      
        </div>
        
       <div class="md:text-left mt-5 md:mt-0">
-        <h1 class="text-3xl font-bold mb-5">COUNTRY NAME</h1>
+        <h1 class="text-3xl font-bold mb-5">{{ nocNames.get(props.id) }}</h1>
         <p>Total Medal: {{ totalMedal }}</p>
         <p>Gold: {{ goldMedal }}</p>
         <p>Silver: {{ silverMedal }}</p>
@@ -90,8 +90,8 @@ import { userIdKey, usernameKey } from '@/services/AuthenticationService';
 
 
 const medalByCountry = ref<OlympicYear[]>([]);
-const nocToname = NOC_NAMES;
-const nameToNOC = NAME_TO_NOC;
+  const nocNames = NOC_NAMES;
+  const codeCountry = NAME_TO_NOC;
 const totalMedal = ref(0);
 const goldMedal = ref(0);
 const silverMedal = ref(0);
@@ -131,11 +131,6 @@ const fetchCountryMedal = async () => {
     }
 };
 
-async function fetchYear() {
-
-    fetchCountryMedal();
-
-}
 
 
 
