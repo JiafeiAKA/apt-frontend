@@ -20,6 +20,7 @@
         <div class="hidden md:flex space-x-10">
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'home' }">Home</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'manage user' }">Manage User</RouterLink> 
+          <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'add country' }">Add country</RouterLink> 
         </div>
         <!-- User dropdown menu -->
         <div class="ml-auto relative bg-[#FBF4DF] rounded-xl p-1">
