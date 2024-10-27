@@ -14,14 +14,14 @@ import ProfileView from '@/views/ProfileView.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: OlympicMainPage,
-  },
-  {
-    path: '/login',
     name: 'login',
     component: LoginPage,
     meta: { hideNavbar: true },
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: OlympicMainPage,
   },
   {
     path: '/profile',

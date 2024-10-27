@@ -48,7 +48,7 @@
                     >Sign Up
                 </button>
                 <p class=" text-sm text-[#26294D] mt-6">Alredy have an account. 
-                    <RouterLink to="/login" class="text-[#26294D] font-medium underline">Log in</RouterLink>
+                    <RouterLink to="/" class="text-[#26294D] font-medium underline">Log in</RouterLink>
                 </p>
 
                 <div v-if="errorMessage" class="error-message">
@@ -85,7 +85,7 @@ const handleSignup = async () => {
       // const hashedPassword = await hashPassword(passwordHash.value);
       
       await signup(username.value, passwordHash.value, email.value, role.value, createdAt);
-      router.push('/login');
+      router.push('/');
   } catch (error) {
       console.error('Signup error:', error); // Log error for debugging
       errorMessage.value = 'Signup failed. Please try again.';

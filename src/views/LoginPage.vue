@@ -86,7 +86,7 @@ const handleLogin = async () => {
 
 
 
-            router.push('/'); // Redirect after login
+            router.push('/home'); // Redirect after login
         } else {
             errorMessage.value = 'Invalid credentials. Please try again.';
         }

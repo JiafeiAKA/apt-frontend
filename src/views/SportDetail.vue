@@ -4,8 +4,9 @@
     <div class="flex flex-col items-center md:flex-row m-5">
       <!-- <img src="path-to-flag-image" alt="Country Flag" class="w-32 h-auto mr-6" /> -->
       <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] md:mr-8 flex justify-center items-center">
-        <country-flag :country="codeCountry.get(nocNames.get(props.id) || 'USA')" size="big" 
-        class="transform scale-300"/>
+        <country-flag :country="codeCountry.get(nocNames.get(props.id) || 'USA')" size="big"
+        class="transform scale-300 border"/>
+        <!-- ปรับขนาดธง -->
       </div>
        
       <div class="md:text-left mt-5 md:mt-0">
