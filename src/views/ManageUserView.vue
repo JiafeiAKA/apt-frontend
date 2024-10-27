@@ -1,34 +1,45 @@
 <template>
-    <div class="manage-user-view">
-      <h1>All Users</h1>
-      <hr />
-  
-      <table class="user-table">
+  <div class="w-full max-w-[900px] mx-auto mt-24 p-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-[#26294D] mb-2">All Users</h1>
+      <hr class="border-gray-300" />
+    </div>
+    <!-- Responsive table container -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
         <thead>
-          <tr>
-            <th>Order</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Actions</th>
+          <tr class="bg-[#26294D] text-white text-left">
+            <th class="p-4 font-semibold">Order</th>
+            <th class="p-4 font-semibold">Username</th>
+            <th class="p-4 font-semibold">Role</th>
+            <th class="p-4 font-semibold">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(user, index) in users" :key="user.id">
-            <td>{{ index + 1 }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.role }}</td>
-            <td>
-              <button @click="toggleRole(user)" class="modify-btn">
-                {{ user.role === 'Admin' ? 'Downgrade to User' : 'Upgrade to Admin' }}
+          <tr
+            v-for="(user, index) in users"
+            :key="user.id"
+            class="border-t border-gray-300 text-sm text-[#26294D] bg-white transition-colors"
+          >
+            <td class="p-4">{{ index + 1 }}</td>
+            <td class="p-4">{{ user.username }}</td>
+            <td class="p-4">{{ user.role }}</td>
+            <td class="p-4">
+              <button
+                @click="toggleRole(user)"
+                class="text-[#26294D] hover:text-[#D3B965] underline"
+              >
+                <span v-if="user.role === 'Admin'">Downgrade to User</span>
+                <span v-else>Upgrade to Admin</span>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </template>
-  
-  <script setup>
+  </div>
+</template>
+<script setup>
   import { ref, onMounted } from 'vue'
   import axios from 'axios'
   
@@ -77,13 +88,13 @@
   
   // Uncomment to fetch real data on mount
   // onMounted(fetchUsers)
-  </script>
+</script>
   
   <style scoped>
   .manage-user-view {
     padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 100px auto;
   }
   
   h1 {
