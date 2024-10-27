@@ -16,18 +16,16 @@
     </div>
   </div>
   <hr class="border-gray-300">
-  <div class="w-full max-w-[1000px] mx-auto p-6 bg-white">
-    <div class="items-center">
-      <p>
-        {{ countryDetails?.Name || 'This country' }} is located in {{ countryDetails?.Continent || 'a certain region'
-        }},
-        with a population of approximately {{ countryDetails?.Population || 'an unknown number' }} people.
-        The capital city, {{ countryDetails?.CapitalCity || 'the main city' }}, serves as the center of political and
-        cultural activity.
-        The official currency is the {{ countryDetails?.Currency || 'local currency' }},
-        and residents primarily speak {{ countryDetails?.OfficialLanguage || 'various languages' }}.
-        With a rich history and diverse culture, {{ countryDetails?.Name || 'this nation' }} continues to make its mark
-        on the global stage.
+  <div class="w-full max-w-[1000px] mx-auto py-8 px-10 bg-white">
+    <div class="w-5/6 mx-auto">
+      <p class="text-gray-700 leading-relaxed text-lg">
+        <span class="font-bold">{{ countryDetails?.Name || 'This country' }}</span> is located in
+        <span class="font-semibold">{{ countryDetails?.Continent || 'a certain region' }}</span>,
+        with a population of approximately <span class="font-semibold">{{ countryDetails?.Population || 'an unknown number' }}</span> people.
+        The capital city, <span class="font-semibold">{{ countryDetails?.CapitalCity || 'the main city' }}</span>, serves as the center of political and cultural activity.
+        The official currency is the <span class="font-semibold">{{ countryDetails?.Currency || 'local currency' }}</span>,
+        and residents primarily speak <span class="font-semibold">{{ countryDetails?.OfficialLanguage || 'various languages' }}</span>.
+        With a rich history and diverse culture, <span class="font-bold">{{ countryDetails?.Name || 'this nation' }}</span> continues to make its mark on the global stage.
       </p>
     </div>
   </div>
