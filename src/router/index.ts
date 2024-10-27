@@ -33,7 +33,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'register',
     component: RegisterPage,
     meta: { hideNavbar: true },
-
   },
   {
     path: '/manage_user',
@@ -73,19 +72,22 @@ const routes: Array<RouteRecordRaw> = [
     path: '/404/:resource',
     name: '404-resource',
     component: NotFoundView,
+    meta: { hideNavbar: true },
     props: true
-},
-{
-    path: '/network-error',
-    name: 'network-error',
-    component: NetworkErrorView
-},
-{
-    path: '/:catchAll(.*)',
-    name: 'notfound',
-    component: NotFoundView
-}
-];
+  },
+  {
+      path: '/network-error',
+      name: 'network-error',
+      component: NetworkErrorView,
+      meta: { hideNavbar: true },
+  },
+  {
+      path: '/:catchAll(.*)',
+      name: 'notfound',
+      component: NotFoundView,
+      meta: { hideNavbar: true },
+  }
+  ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

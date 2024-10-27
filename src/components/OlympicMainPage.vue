@@ -15,10 +15,10 @@
             </select>
         </div>
     </div>
-    <div :class="['bg-white shadow-sm flex justify-center items-center transition-all duration-300 sticky top-16', shrinkHeader ? 'p-4' : 'p-6']">
+    <div :class="['bg-white shadow-sm flex justify-center items-center transition-all duration-300 sticky top-16', shrinkHeader ? 'p-6' : 'p-6']">
         <div class="flex-none w-16 text-sm md:text-base md:w-[100px]">Order</div>
         <div class="w-48 text-sm md:w-[280px] md:text-base md:pr-5">Name of Countries</div>
-        <div class="flex w-52 gap-3 pl-2 md:w-[330px] md:pr-7 md:justify-between">
+        <div class="flex w-52 justify-evenly pr-3 md:w-[330px] md:pr-7 md:justify-between">
             <img src="../assets/gold-medal.png" alt="Gold" class="w-5 md:w-7">
             <img src="../assets/silver-medal.png" alt="Silver" class="w-5 md:w-7">
             <img src="../assets/bronze-medal.png" alt="Bronze" class="w-5 md:w-7">
