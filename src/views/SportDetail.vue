@@ -97,7 +97,7 @@ import { getMedalByCountryCodeAndYear, OlympicYear } from '@/services/MedalCount
 import { NAME_TO_NOC, NOC_NAMES } from '@/constants/NationName';
 import { CommentResponse, getCommentByCountryCode, postComment } from '@/services/CommentService';
 import { userIdKey, usernameKey } from '@/services/AuthenticationService';
-
+import confetti from 'canvas-confetti';
 
 const medalByCountry = ref<OlympicYear[]>([]);
 const nocNames = NOC_NAMES;
@@ -167,6 +167,13 @@ const submitComment = async () => {
         await postComment(newComment.value, props.id, createdAt, userId ?? 0, username ?? 'Unkown');
         newComment.value = ''; // Clear textarea after submitting
         await fetchComments(); // Refresh the comment list
+
+        //trigger confetti when comment successful submit
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
     } catch (error) {
         console.error('Error submitting comment:', error);
     }
