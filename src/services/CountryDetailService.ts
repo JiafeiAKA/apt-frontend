@@ -12,7 +12,6 @@ export interface CountryResponse {
   Population: number;
   OfficialLanguage: string;
 }
-
 export const getCountryDetailByCode = async (
   countryCode: string
 ): Promise<CountryResponse> => {

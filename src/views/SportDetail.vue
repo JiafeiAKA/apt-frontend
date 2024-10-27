@@ -3,14 +3,13 @@
     <!-- Header Section with Flag and Country Name -->
     <div class="flex flex-col items-center md:flex-row m-5">
       <!-- <img src="path-to-flag-image" alt="Country Flag" class="w-32 h-auto mr-6" /> -->
-      <!-- <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div> -->
-      <div class=" w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">
-        <country-flag :country="nocToname.get(nameToNOC.get(props.id) || 'USA')" size='big' class="border" />
-
+      <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] md:mr-8 flex justify-center items-center">
+        <country-flag :country="codeCountry.get(nocNames.get(props.id) || 'USA')" size="big" 
+        class="transform scale-300"/>
       </div>
-
+       
       <div class="md:text-left mt-5 md:mt-0">
-        <h1 class="text-3xl font-bold mb-5">COUNTRY NAME</h1>
+        <h1 class="text-3xl font-bold mb-5">{{ nocNames.get(props.id) }}</h1>
         <p>Total Medal: {{ totalMedal }}</p>
         <p>Gold: {{ goldMedal }}</p>
         <p>Silver: {{ silverMedal }}</p>
@@ -37,7 +36,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="sport in medalByCountry" v-bind:key="sport.id" class="border-t border-gray-300">
+            <tr 
+            v-for="(sport, index) in medalByCountry" 
+            v-bind:key="sport.id" 
+            :class="{ hidden: index >= 5 && !showAll }"
+            class="border-t border-gray-300">
               <td class="p-2 sm:p-4 bg-white">{{ sport.sport }}</td>
               <td class="p-2 sm:p-4 bg-white">{{ sport.gold }}</td>
               <td class="p-2 sm:p-4 bg-white">{{ sport.silver }}</td>
@@ -47,10 +50,15 @@
           </tbody>
         </table>
       </div>
+      <div class="text-center mt-4">
+        <button @click="toggleShowAll" class="text-[#26294D] font-medium hover:underline">
+          {{ showAll ? 'Show Less' : 'Read More' }}
+        </button>
+      </div>
     </div>
   </div>
   <hr>
-  <!-- Comments and Cheer Section -->
+    <!-- Comments and Cheer Section -->
   <div class="w-full max-w-[1000px] mx-auto p-12 bg-white">
     <div class="flex flex-col md:flex-row gap-8">
       <!-- Cheer Input Section -->
@@ -73,6 +81,7 @@
               <p class="bg-yellow-100 p-2 rounded">{{ comment.commentText }}</p>
             </div>
           </li>
+
         </ul>
       </div>
     </div>
@@ -81,8 +90,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted , defineProps } from 'vue';
 import { useRoute } from 'vue-router';
+import SportDetailService from '@/services/SportDetailService';
 import { yearList } from '@/constants/YearList';
 import { getMedalByCountryCodeAndYear, OlympicYear } from '@/services/MedalCountryService';
 import { NAME_TO_NOC, NOC_NAMES } from '@/constants/NationName';
@@ -91,16 +101,15 @@ import { userIdKey, usernameKey } from '@/services/AuthenticationService';
 
 
 const medalByCountry = ref<OlympicYear[]>([]);
-const nocToname = NOC_NAMES;
-const nameToNOC = NAME_TO_NOC;
+const nocNames = NOC_NAMES;
+const codeCountry = NAME_TO_NOC;
 const totalMedal = ref(0);
 const goldMedal = ref(0);
 const silverMedal = ref(0);
 const bronzeMedal = ref(0);
 
 const years: number[] = yearList
-  .sort((a, b) => b - a);
-
+    .sort((a, b) => b - a);
 
 const selectedYear = ref(yearList[0]);
 
@@ -108,100 +117,76 @@ const newComment = ref<string>(''); // State to hold the new comment
 
 const comments = ref<CommentResponse[]>([]);
 
-
-
 const props = defineProps<{
-  id: string
+    id: string
 }>();
 
 const fetchCountryMedal = async () => {
 
-  console.log("noc " + props.id);
-  try {
-    const response = await getMedalByCountryCodeAndYear(props.id, selectedYear.value);
-    medalByCountry.value = response;
+  console.log("noc "+props.id);
+    try {
+        const response = await getMedalByCountryCodeAndYear(props.id, selectedYear.value);
+        medalByCountry.value = response;
 
-    totalMedal.value = medalByCountry.value.reduce((sum, medal: { total_medals: any; }) => sum + medal.total_medals, 0);
-    goldMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.gold, 0);
-    silverMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.silver, 0);
-    bronzeMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.bronze, 0);
-  } catch (error) {
-    console.error('Error fetching medalByCountry:', error);
-  }
+        totalMedal.value = medalByCountry.value.reduce((sum, medal: { total_medals: any; }) => sum + medal.total_medals, 0);
+        goldMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.gold, 0);
+        silverMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.silver, 0);
+        bronzeMedal.value = medalByCountry.value.reduce((sum, medal) => sum + medal.bronze, 0);
+    } catch (error) {
+        console.error('Error fetching medalByCountry:', error);
+    }
 };
 
-async function fetchYear() {
-
-  fetchCountryMedal();
-
-}
-
-
-
 const fetchComments = async () => {
-  try {
-    const response = await getCommentByCountryCode(props.id);
-    comments.value = response;
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-  }
+    try {
+        const response = await getCommentByCountryCode(props.id);
+        comments.value = response;
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+    }
 };
 
 const submitComment = async () => {
-  if (newComment.value.trim() === '') return; // Avoid submitting empty comments
-  try {
+    if (newComment.value.trim() === '') return; // Avoid submitting empty comments
+    try {
 
-    const now = new Date();
-    const createdAt = now.toISOString().slice(0, 19);
-    /**
-     *
-     *  comment: string,
-countryCode: string,
-createdAt: string,
-userId: number,
-username: string
-     *   */
+        const now = new Date();
+        const createdAt = now.toISOString().slice(0, 19);
+        /**
+         *
+         *  comment: string,
+  countryCode: string,
+  createdAt: string,
+  userId: number,
+  username: string
+         *   */
 
 
-    const userId = parseInt(localStorage.getItem(userIdKey) ?? '0', 10);
-    const username = localStorage.getItem(usernameKey)
-    //TODO Country Id
-    await postComment(newComment.value, props.id, createdAt, userId ?? 0, username ?? 'Unkown');
-    newComment.value = ''; // Clear textarea after submitting
-    await fetchComments(); // Refresh the comment list
-  } catch (error) {
-    console.error('Error submitting comment:', error);
-  }
+        const userId = parseInt(localStorage.getItem(userIdKey) ?? '0', 10);
+        const username = localStorage.getItem(usernameKey)
+        //TODO Country Id
+        await postComment(newComment.value, props.id, createdAt, userId ?? 0, username ?? 'Unkown');
+        newComment.value = ''; // Clear textarea after submitting
+        await fetchComments(); // Refresh the comment list
+    } catch (error) {
+        console.error('Error submitting comment:', error);
+    }
 };
 
+const showAll = ref(false);
 
+function toggleShowAll() {
+  showAll.value = !showAll.value;
+}
 
 
 onMounted(() => {
-  fetchCountryMedal();
-
+    fetchCountryMedal();
+  
 });
 
-onMounted(() => {
+onMounted(()=>{
   fetchComments();
 });
 
-// Mock data for medal summary
-// const medalSummary = ref({ gold: 4, silver: 2, bronze: 1, total: 7 });
-
-// // Mock data for sports details; replace with actual API data
-// const sportsDetails = ref([
-//   { name: "Archery", gold: 2, silver: 0, bronze: 0, total: 2 },
-//   { name: "Basketball", gold: 0, silver: 1, bronze: 0, total: 1 },
-//   { name: "Golf", gold: 0, silver: 0, bronze: 1, total: 1 },
-//   { name: "Fencing", gold: 2, silver: 1, bronze: 0, total: 3 }
-// ]);
-
-// // Mock data for comments
-// const comments = ref([
-//   { username: "Username1", text: "Great job!" },
-//   { username: "Username2", text: "Keep it up!" },
-//   { username: "Username3", text: "Amazing performance!" },
-//   { username: "Username4", text: "So proud!" }
-// ]);
 </script>
