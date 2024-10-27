@@ -10,7 +10,6 @@ import ManageUser from '@/views/ManageUserView.vue';
 import NotFoundView from "@/views/NotFoundView.vue";
 import NetworkErrorView from "@/views/NetworkErrorView.vue";
 import ProfileView from '@/views/ProfileView.vue';
-import AddCountry from '@/views/AddCountry.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -38,21 +37,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/manage_user',
     name: 'manage user',
     component: ManageUser
-  },
-  {
-    path: '/add_country',
-    name: 'add country',
-    component: AddCountry
-  },
-
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
   {
     path: '/event/:id',

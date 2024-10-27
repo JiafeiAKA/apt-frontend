@@ -2,10 +2,9 @@
   <div class="w-full max-w-[1000px] mx-auto p-6 bg-white items-center">
     <!-- Header Section with Flag and Country Name -->
     <div class="flex flex-col items-center md:flex-row m-5">
-      <!-- <img src="path-to-flag-image" alt="Country Flag" class="w-32 h-auto mr-6" /> -->
       <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] md:mr-8 flex justify-center items-center">
         <country-flag :country="codeCountry.get(nocNames.get(props.id) || 'USA')" size="big" 
-        class="transform scale-300"/>
+        class="transform scale-300 border"/>
       </div>
        
       <div class="md:text-left mt-5 md:mt-0">
@@ -75,7 +74,7 @@
         <h3 class="text-2xl font-semibold mb-4">COMMENTS</h3>
         <ul>
           <li v-for="(comment, index) in comments" :key="index" class="flex items-start gap-2 mb-4">
-            <div class="w-8 h-8 bg-blue-800 rounded-full flex-shrink-0"></div>
+            <div><img src="../assets/pumpkin.png" alt="" class="w-8 h-8 rounded-full flex-shrink-0"></div>
             <div>
               <p class="font-medium">{{ comment.username }}</p>
               <p class="bg-yellow-100 p-2 rounded">{{ comment.commentText }}</p>

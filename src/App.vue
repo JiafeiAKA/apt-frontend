@@ -11,7 +11,7 @@
           </svg>
         </button>
 
-        <!-- Logo (Centered on Small Screens, Left-Aligned on Large Screens) -->
+        <!-- APT (Centered on Small Screens, Left-Aligned on Large Screens) -->
         <RouterLink class="text-[24px] text-[#FBF4DF] font-bold no-underline hover:text-[#001231] font-cinzel ml-28 md:mx-0 md:mr-10" 
           :to="{ name: 'home' }">APT
         </RouterLink> 
@@ -20,21 +20,20 @@
         <div class="hidden md:flex space-x-10">
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'home' }">Home</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'manage user' }">Manage User</RouterLink> 
-          <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'add country' }">Add country</RouterLink> 
         </div>
         <!-- User dropdown menu -->
         <div class="ml-auto relative bg-[#FBF4DF] rounded-xl p-1">
           <button @click="toggleDropdown" class="flex items-center text-[#D3B965] hover:text-[#001231] focus:outline-none">
-            <!-- User's profile -->
-            <img src="./assets/pumpkin.png" alt="Profile Picture" class="w-8 h-8 rounded-full mr-3" />
-            <span class="text-[18px] font-medium">{{ receivedData || 'Admin' }}</span>
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <img src="./assets/pumpkin.png" alt="Profile Picture" class="w-8 h-8 rounded-full" />
+            <span class="hidden md:inline text-[18px] font-medium ml-3">{{ receivedData || 'Admin' }}</span>
+            <svg class="hidden md:inline w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
+          <!-- Dropdown menu -->
           <div v-if="isDropdownOpen" class="absolute right-0 mt-2 w-40 bg-[#FBF4DF] rounded-lg shadow-lg py-2 z-30">
-              <RouterLink @click="logout" class="block px-4 py-2 text-gray-700 hover:bg-[#F3DA97] no-underline" :to="{ name: 'login' }">Log out</RouterLink>
-          </div> 
+            <RouterLink @click="logout" class="block px-4 py-2 text-gray-700 hover:bg-[#F3DA97] no-underline" :to="{ name: 'login' }">Log out</RouterLink>
+          </div>
         </div>
       </nav>
 

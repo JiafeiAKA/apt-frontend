@@ -1,9 +1,10 @@
 <template>
   <div class="w-full max-w-[1000px] mx-auto p-6 bg-white items-center">
     <div class="flex flex-col items-center md:flex-row m-5">
-      <country-flag :country="(props.id || 'USA')" size='big' class="border" />
-
-      <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] bg-black md:mr-8 flex justify-center">Flag</div>
+      <div class="w-[250px] h-[150px] md:w-[300px] md:h-[180px] md:mr-8 flex justify-center items-center">
+        <country-flag :country="(props.id || 'USA')" size='big' 
+          class="transform scale-300 border" />
+      </div>
       <div class="md:text-left mt-5 md:mt-0">
         <h1 class="text-3xl font-bold mb-5 ">{{ countryDetails?.Name || 'COUNTRY NAME' }}</h1>
         <p>Capital City: {{ countryDetails?.CapitalCity || 'N/A' }}</p>
@@ -24,7 +25,7 @@
         The capital city, {{ countryDetails?.CapitalCity || 'the main city' }}, serves as the center of political and
         cultural activity.
         The official currency is the {{ countryDetails?.Currency || 'local currency' }},
-        and residents primarily speak {{ countryDetails?.OfficialLanguages?.join(', ') || 'various languages' }}.
+        and residents primarily speak {{ countryDetails?.OfficialLanguage || 'various languages' }}.
         With a rich history and diverse culture, {{ countryDetails?.Name || 'this nation' }} continues to make its mark
         on the global stage.
       </p>

@@ -84,5 +84,3 @@ fetchData();
 
 
 </script>
-
-<style scoped></style>
