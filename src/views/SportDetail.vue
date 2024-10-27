@@ -27,7 +27,7 @@
       <!-- Scrollable Table Container -->
       <div class="overflow-x-auto">
         <table class="w-full text-center border border-gray-300 min-w-[600px] ">
-          <thead class="bg-gray-700 text-white">
+          <thead class="bg-[#001231] text-white">
             <tr>
               <th class="p-2 sm:p-4">Sport Name</th>
               <th class="p-2 sm:p-4">Gold</th>

@@ -7,13 +7,21 @@ function retry(){
 </script>
 
 <template>
-    <div class="flex flex-col justify-center h-[70vh] text-[#000000]">
-        <h1 class="text-4xl">Oops!</h1>
-        <h3 class="text-xl mt-6">It seems there was a problem connecting to the network.</h3>
-        <p class="text-lg mt-2">Please check your internet connection and try again.</p>
-        <div class="flex gap-8 mt-6 text-lg">
-            <button @click="retry" class="w-24 border border-[#FFB4C2] bg-[#FFB4C2] rounded-lg hover:bg-[#fc869b]">Retry</button>
-            <RouterLink to="/" class="text-[#FFB4C2] hover:text-[#D1E9F6]">Go to Home</RouterLink>
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="w-full max-w-[700px] p-6 md:p-8">
+        <div class="flex flex-col justify-center items-start h-full">
+          <h1 class="text-3xl md:text-4xl font-bold">Oops!</h1>
+          <h3 class="text-lg md:text-xl mt-4 md:mt-6">It seems there was a problem connecting to the network.</h3>
+          <p class="text-sm md:text-base mt-2">Please check your internet connection and try again.</p>
+          <div class="flex flex-row gap-4 md:gap-8 mt-6 text-lg">
+            <button @click="retry" class="text-lg text-center w-32 border rounded-lg bg-[#F3DA97] hover:bg-[#D3B965]">
+              Retry
+            </button>
+            <RouterLink to="/" class="hover:text-[#D3B965] text-center md:text-left">
+              Go to Home
+            </RouterLink>
+          </div>
         </div>
+      </div>
     </div>
-</template>
+  </template>
