@@ -7,8 +7,6 @@ export interface UserRes{
     email : string ;
     role : Role;
     createdAt : string
-
- 
 }
 
 
