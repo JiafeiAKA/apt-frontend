@@ -10,7 +10,7 @@ import ManageUser from '@/views/ManageUserView.vue';
 import NotFoundView from "@/views/NotFoundView.vue";
 import NetworkErrorView from "@/views/NetworkErrorView.vue";
 import ProfileView from '@/views/ProfileView.vue';
-
+import AddCountry from '@/views/AddCountry.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -38,8 +38,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/manage_user',
     name: 'manage user',
     component: ManageUser
-
   },
+  {
+    path: '/add_country',
+    name: 'add country',
+    component: AddCountry
+  },
+
   {
     path: '/about',
     name: 'about',

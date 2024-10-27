@@ -21,10 +21,10 @@
         <!-- Links (Hidden on small screens, Left-Aligned on larger screens) -->
         <div class="hidden md:flex space-x-10">
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'home' }">Home</RouterLink> 
-          
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'login' }">Log in</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'register' }">Register</RouterLink> 
           <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'manage user' }">Manage User</RouterLink> 
+          <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" :to="{ name: 'add country' }">Add country</RouterLink> 
         </div>
 
         <H1>User name {{ receivedData  }}</H1>
@@ -34,7 +34,8 @@
         <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'home' }">Home</RouterLink> 
         <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'login' }">Log in</RouterLink> 
         <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'register' }">Register</RouterLink>
-        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'manage user' }">Manage User</RouterLink>  
+        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'manage user' }">Manage User</RouterLink> 
+        <RouterLink class="text-[18px] text-[#FBF4DF] no-underline hover:text-[#001231]" @click="toggleMenu" :to="{ name: 'add country' }">Add Country</RouterLink>   
       </div>
     </header>
 
